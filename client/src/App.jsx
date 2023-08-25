@@ -11,6 +11,7 @@ import EditComment from './pages/comments/Edit';
 
 import Register from './pages/users/Register';
 import Login from './pages/users/Login';
+import Profile from './pages/users/Profile'
 
 import Navbar from './components/Navbar';
 
@@ -62,6 +63,7 @@ function App() {
           <Route path='/posts/:id' element={<ShowPost user={loggedIn} />} />
           {loggedIn ?
             <>
+              <Route path='/profile' element={<Profile user={user} />} />
               <Route path='/posts/new' element={<NewPost user={loggedIn} />} />
               <Route path='/posts/:id/edit' element={<EditPost user={loggedIn} />} />
               <Route path='/comments/:id/edit' element={<EditComment />} />

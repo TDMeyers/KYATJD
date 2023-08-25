@@ -21,6 +21,9 @@ function Navbar({ setUser, username }) {
           <li onClick={logout}>
             <Link to="/posts">Logout</Link>
           </li>
+          <li>
+            <Link to=''>Profile</Link>
+          </li>
         </>
        : 
         <>
