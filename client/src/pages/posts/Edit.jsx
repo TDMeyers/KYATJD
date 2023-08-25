@@ -1,8 +1,13 @@
 import axios from "../../api"
 import { useState, useEffect, useRef } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
 
-function Edit({ user }) {
+
+
+function Edit() {
+
+    const user = useSelector(state => state.user)
 
     const [post, setPost] = useState({})
 
@@ -15,14 +20,14 @@ function Edit({ user }) {
     async function getPost() {
         try {
             const response = await axios.get(`/api/posts/${id}`)
-  
-            if (response.data.user !== user) {
+
+            if (response.data.user !== user.username) {
                 throw new Error('User access denied')
             }
 
             setPost(response.data)
-        } catch(err) {
-            console.log(err.message)
+        } catch (err) {
+            console.log('inside eidt', err.message)
             navigate('/posts')
         }
     }
@@ -40,8 +45,8 @@ function Edit({ user }) {
                 }
             })
             navigate(`/posts/${id}`)
-        } catch(err) {
-            console.log(err.message)
+        } catch (err) {
+            console.log('inside edit', err.message)
         }
     }
 
@@ -52,8 +57,8 @@ function Edit({ user }) {
     if (!post.subject) {
         return <div>Loading...</div>
     }
-console.log(subjectRef)
-    return ( 
+
+    return (
         <>
             <h1>Edit Post</h1>
             <div className='buttons' style={{ flexDirection: 'column' }}>
@@ -68,7 +73,7 @@ console.log(subjectRef)
                     <button>Submit</button>
                 </form>
 
-                    <button onClick={() => navigate(`/posts/${post._id}`)}>Back</button>
+                <button onClick={() => navigate(`/posts/${post._id}`)}>Back</button>
 
             </div>
         </>

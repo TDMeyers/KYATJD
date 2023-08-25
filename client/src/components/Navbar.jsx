@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 import icon from '../assets/react.svg'
+import { addUser } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-function Navbar({ setUser, username }) {
-  
+
+
+
+function Navbar() {
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
+
   const logout = () => {
     localStorage.removeItem("token")
-    setUser({})
+    dispatch(addUser({}))
   };
 
   return (
@@ -15,14 +22,14 @@ function Navbar({ setUser, username }) {
           <img src={icon} alt="React Icon" id="icon" />
         </Link>
       </li>
-      {username ? 
+      {user.username ?
         <>
-          <li style={{ color: "black" }}>Welcome {username}!</li>
+          <li style={{ color: "black" }}>Welcome {user.username}!</li>
           <li onClick={logout}>
             <Link to="/posts">Logout</Link>
           </li>
         </>
-       : 
+        :
         <>
           <li>
             <Link to="/login">Login</Link>

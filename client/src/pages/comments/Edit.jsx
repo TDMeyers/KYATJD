@@ -17,14 +17,14 @@ function Edit() {
         try {
             const response = await axios.get(`/api/comments/${params.id}`, {
                 headers: {
-                  Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            console.log(response)
-            console.log('here')
+            console.log('this is the response inside edit.jsx', response)
+
             setComment(response.data)
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            console.log('this is err inside edit.jsx', err)
             navigate('/posts')
         }
     }
@@ -39,22 +39,22 @@ function Edit() {
             const comment = {
                 text: textRef.current.value,
             }
-            console.log(params)
+            console.log('this is params inside edit.jsx', params)
             await axios.put(`/api/comments/${params.id}`, comment, {
                 headers: {
-                  Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
             navigate(-1)
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            console.log('this is err inside edit.jsx', err)
         }
     }
 
     if (!comment.text)
         return <div>Loading...</div>
 
-    return ( 
+    return (
         <>
             <h1>Edit Comment</h1>
             <div className='buttons' style={{ flexDirection: 'column' }}>
@@ -65,7 +65,7 @@ function Edit() {
 
                     <button>Submit</button>
                 </form>
-                    <button onClick={() => navigate(-1)}>Back</button>
+                <button onClick={() => navigate(-1)}>Back</button>
             </div>
         </>
     );

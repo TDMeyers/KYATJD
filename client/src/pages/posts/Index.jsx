@@ -2,8 +2,14 @@ import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 
 import axios from '../../api'
+import { useSelector } from "react-redux";
 
-function Index({ user }) {
+
+
+function Index() {
+
+
+    const user = useSelector(state => state.user)
 
     const [posts, setPosts] = useState([])
 
@@ -11,10 +17,10 @@ function Index({ user }) {
 
     async function getPosts() {
         try {
-            console.log('v1.00')
+            // console.log('v1.00')
             const response = await axios.get('/api/posts')
             setPosts(response.data)
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -24,23 +30,23 @@ function Index({ user }) {
     }, [])
 
     return (
-            <>
-                <h1>Index View</h1>
-                <div id="posts">
+        <>
+            <h1>Index View</h1>
+            <div id="posts">
 
-                        {posts.map((post, index) => 
-                            <div className="a-post" key={index}>
-                                <Link to={`/posts/${post._id}`}>{post.subject}</Link>
-                            </div>
-                        )}
-            
-             
-                    {user && 
-                        <button onClick={() => navigate('/posts/new')}>NEW POST</button>
-                    }
-               
-                </div>
-            </>
+                {posts.map((post, index) =>
+                    <div className="a-post" key={index}>
+                        <Link to={`/posts/${post._id}`}>{post.subject}</Link>
+                    </div>
+                )}
+
+
+                {user &&
+                    <button onClick={() => navigate('/posts/new')}>NEW POST</button>
+                }
+
+            </div>
+        </>
     )
 }
 
