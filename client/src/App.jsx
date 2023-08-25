@@ -72,19 +72,19 @@ function App() {
         <Route path='/posts' element={<IndexPost user={user.username} />} />
         <Route path='/posts/:id' element={<ShowPost user={user.username} />} />
 
-        <>
+        {user?.username ? <>
           <Route path='/posts/new' element={<NewPost user={user.username} />} />
           <Route path='/posts/:id/edit' element={<EditPost user={user.username} />} />
           <Route path='/comments/:id/edit' element={<EditComment />} />
           {!isLoading && <Route path='*' element={<Navigate to='/posts' />} />}
         </>
-        :
-        <>
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          {!isLoading && <Route path='*' element={<Navigate to='/login' />} />}
-        </>
-
+          :
+          <>
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            {!isLoading && <Route path='*' element={<Navigate to='/login' />} />}
+          </>
+        }
       </Routes>
     </div>
   );

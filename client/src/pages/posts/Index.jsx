@@ -41,7 +41,7 @@ function Index() {
                 )}
 
 
-                {user &&
+                {user.username &&
                     <button onClick={() => navigate('/posts/new')}>NEW POST</button>
                 }
 
