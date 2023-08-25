@@ -1,11 +1,17 @@
 Authored by: 
 
 Asbin Ghimire
+
 Jabril Jeylani
+
 Kalkidan Amdie
+
 Taylor Brooks
+
 Yassine Barkati
+
 Dylan Meyers
+
 
 A social Media clone site called Echo
 
