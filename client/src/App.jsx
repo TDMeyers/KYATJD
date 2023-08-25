@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+
 import './App.css';
 
 
 import EditPost from './pages/posts/Edit';
 import IndexPost from './pages/posts/Index';
+import Main from './pages/posts/Main';
+
 import NewPost from './pages/posts/New';
 import ShowPost from './pages/posts/Show';
 import EditComment from './pages/comments/Edit';
@@ -70,7 +73,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Navigate to='/posts' />} />
-        <Route path='/posts' element={<IndexPost />} />
+        <Route path='/posts' element={<Main />} />
         <Route path='/posts/:id' element={<ShowPost />} />
 
         {user?.username ? <>
