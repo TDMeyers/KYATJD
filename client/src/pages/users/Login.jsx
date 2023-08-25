@@ -1,6 +1,8 @@
 import axios from '../../api'
-
-import { useState } from "react";
+import { FaFacebookF } from 'react-icons/fa'
+import {ImGooglePlus } from 'react-icons/im'
+import {RiLinkedinFill } from 'react-icons/ri'
+import { useEffect,  useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 let emptyForm = { 
@@ -10,6 +12,10 @@ let emptyForm = {
 }
 
 function Login({ setUser }) {
+    // const containerRef = useRef(null);
+    // useEffect(() => {
+    //     containerRef.current.classList.remove("right-panel-active");
+    // }, []);
 
     const navigate = useNavigate()
 
@@ -50,34 +56,98 @@ function Login({ setUser }) {
 
         }
     }
+    const [showAnimation, setShowAnimation] = useState(false);
+
+    useEffect(() => {
+      // This effect will run after the component is mounted
+      setShowAnimation(true);
+    }, []);
 
     return ( 
-        <>
-            <h1>Login</h1>
+        <div className="body">
+    <div className="container" id="container" >
+        <div className="form-container sign-up-container">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <br />
+                <h1>Create Account</h1>
+                <div className="social-container">
+                    <a href="#" className="social"><i className="fab fa-facebook-f">< FaFacebookF /></i></a>
+                    <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                    <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
                 <input 
                     type="text" 
                     id="username"
                     name="username"
                     onChange={handleChange}
                     value={form.username}
+                    placeholder="Name"
                 />
-                <br /><br />
-                <label htmlFor="password">Password:</label>
-                <br />
+                <input 
+                    type="email" 
+                    id="email"
+                    name="email"
+                    onChange={handleChange}
+                    value={form.email}
+                    placeholder="Email"
+                />
                 <input 
                     type="password" 
                     id="password"
                     name="password"
                     onChange={handleChange}
                     value={form.password}
+                    placeholder="Password"
                 />
-                <br /><br />
-                <button>Submit</button>
+                <button>Sign Up</button>
             </form>
-        </>
+        </div>
+        <div className="form-container log-in-container">
+            <form onSubmit={handleSubmit}>
+                <h1>Log in</h1>
+                <div className="social-container">
+                    <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+                    <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+                    <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <input 
+                    type="text" 
+                    id="username"
+                    name="username"
+                    onChange={handleChange}
+                    value={form.username}
+                    placeholder="Username"
+                />
+                <input 
+                    type="password" 
+                    id="password"
+                    name="password"
+                    onChange={handleChange}
+                    value={form.password}
+                    placeholder="Password"
+                />
+                <a href="#">Forgot your password?</a>
+                <button>Log In</button>
+            </form>
+        </div>
+        <div className="overlay-container">
+            <div className="overlay">
+                <div className="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Already have an account? Log In</p>
+                    <button className="ghost" id="logIn">Log In</button>
+                </div>
+                <div className="overlay-panel overlay-right">
+                    <h1>Hello, There!</h1>
+                    <p>Don't have an account? Sign Up Free</p>
+                    <button className="ghost" id="signUp" onClick={()=>navigate("/register")}>Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    </div>
      );
 }
 

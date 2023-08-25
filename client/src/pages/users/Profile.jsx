@@ -6,7 +6,7 @@ export default function Profile({ user }) {
   console.log(user)
   function handleSubmit(e){
     e.preventDefault()
-    
+    setInput(e.target.value)
   }
   const hiddenEmail= email.split('')
   for(let i=3; i< hiddenEmail.length; i++){
@@ -18,11 +18,20 @@ export default function Profile({ user }) {
       <h1>{username}</h1>
       <p>Email: {hiddenEmail}</p>
       <img src={image} alt='Profile Image'></img>
-      <form onSubmit={handleSubmit}>
+      {input.length>0 ? 
+      <>
+        <h3>About:</h3>
+        <p>{input}</p>
+      </>  
+      
+        :
+        <form onSubmit={handleSubmit}>
         <label htmlFor='about'><h3>A little about you and your interests or expertise:</h3></label>
         <textarea id='about' name='about' rows='5' col='30'></textarea>
         <button>Submit</button>
-      </form>
+        </form>
+      }
+      
     </div>
   );
 }
