@@ -22,7 +22,7 @@ function Navbar({ setUser, username }) {
             <Link to="/posts">Logout</Link>
           </li>
           <li>
-            <Link to=''>Profile</Link>
+            <Link to='/profile'>Profile</Link>
           </li>
         </>
        : 
