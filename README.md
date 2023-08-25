@@ -21,10 +21,17 @@ Planned / non-implemented ideas:
 - Ability to upload user profile
 
 -Styling completed with Tailwind and CSS by Yassine 
+
 -User signup and login pages styled and setup by Yassine
+
 -Redux and code cleanup done by Asbin
+
 -Random quotes quotes api integration by Jabril
+
 -Search by created and implemented by Kali
 
+
 -Project managed and code reviewed and merged, checked by Dylan
+
 -backend and client sides deployed by Dylan
+
